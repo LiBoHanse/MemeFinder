@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         Button shareButton = chunkInflate.findViewById(R.id.shareButton);
         Button removeButton = chunkInflate.findViewById(R.id.removeButton);
         Button saveButton = chunkInflate.findViewById(R.id.saveButton);
+        LinearLayout buttonGroup = chunkInflate.findViewById(R.id.buttonGroup);
         theImageView.setImageURI(entry.fileUri);
 
         shareButton.setOnClickListener(v -> {
@@ -103,6 +104,22 @@ public class MainActivity extends AppCompatActivity {
 
         saveButton.setOnClickListener(v -> {
             PicManage.editText(entry ,theTextView.getText().toString());
+        });
+
+        buttonGroup.setVisibility(View.INVISIBLE);
+        theTextView.setEnabled(false);
+
+        theImageView.setOnClickListener(v -> {
+            switch(buttonGroup.getVisibility()) {
+                case View.VISIBLE:
+                    buttonGroup.setVisibility(View.INVISIBLE);
+                    theTextView.setEnabled(false);
+                    break;
+                case View.INVISIBLE:
+                    buttonGroup.setVisibility(View.VISIBLE);
+                    theTextView.setEnabled(true);
+                    break;
+            }
         });
 
         picLayout.addView(chunkInflate);
