@@ -11,40 +11,46 @@
         android:layout_height="400dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Your Text"
+        android:inputType="textMultiLine" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/removeButton"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Your Text"
-            android:inputType="textMultiLine" />
+            android:layout_weight="1"
+            android:text="Remove"
+            android:textColor="@color/colorAccent"
+            android:textSize="10dp" />
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Save" />
+            android:text="Save"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12dp" />
 
         <Button
             android:id="@+id/shareButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Share" />
+            android:text="Share"
+            android:textSize="12dp" />
 
-        <Button
-            android:id="@+id/removeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Remove" />
     </LinearLayout>
 
 </LinearLayout>
