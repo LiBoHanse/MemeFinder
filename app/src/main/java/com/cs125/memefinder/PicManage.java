@@ -1,6 +1,7 @@
 package com.cs125.memefinder;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,7 +36,7 @@ public class PicManage {
 
     public static void readFromFile() {
         Gson gson = new Gson();
-        try (InputStreamReader inputStreamReader = new InputStreamReader(context.openFileInput("textfile.json"))) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(new File(dirPic, "textfile.json")))) {
             entryList = gson.fromJson(inputStreamReader, new TypeToken<LinkedList<PicEntry>>() {}.getType());
         } catch (Throwable e) {
             e.printStackTrace();
@@ -45,7 +46,7 @@ public class PicManage {
 
     public static void saveToFile() {
         Gson gson = new Gson();
-        try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("textfile.json", Context.MODE_PRIVATE))) {
+        try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(new File(dirPic, "textfile.json")))) {
             gson.toJson(entryList, outputStreamWriter);
         } catch (Throwable e) {
             e.printStackTrace();
