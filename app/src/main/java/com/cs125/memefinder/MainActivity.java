@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             switch(buttonGroup.getVisibility()) {
                 case View.VISIBLE:
                     buttonGroup.setVisibility(View.INVISIBLE);
+                    PicManage.editText(entry ,theTextView.getText().toString());
                     theTextView.setEnabled(false);
                     break;
                 case View.INVISIBLE:
