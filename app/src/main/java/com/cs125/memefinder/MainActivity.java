@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         Button importButton = findViewById(R.id.importButton);
         importButton.setOnClickListener(v -> {
             Intent intent=new Intent();
-            intent.setAction(Intent.ACTION_PICK);//Pick an item fromthe data
-            intent.setType("image/*");//从所有图片中进行选择
+            intent.setAction(Intent.ACTION_PICK);//Pick an item from the data
+            intent.setType("image/*");//specify type
             startActivityForResult(intent, SELECT_ORIGINAL_PIC);
 
         });
@@ -47,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
                 updateView(resultList);
             }
         });
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.startsWith("image/")) {
+                handleSendImage(intent); // Handle text being sent
+            }
+        }
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -105,5 +115,15 @@ public class MainActivity extends AppCompatActivity {
         for (PicEntry entry : temp) {
             inflate(entry);
         }
+    }
+
+    public void handleSendImage(Intent intent) {
+        Uri imageURI = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (imageURI != null) {
+            // Update UI to reflect image being shared
+            String text = "";
+            PicManage.addPic(imageURI, text);
+        }
+        updateView(PicManage.entryList);
     }
 }
