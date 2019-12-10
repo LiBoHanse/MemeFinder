@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Your Text"
+        android:hint="Description"
         android:inputType="textMultiLine" />
 
     <LinearLayout
