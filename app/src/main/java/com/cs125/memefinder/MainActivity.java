@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         PicManage.init(this);
-        updateView(PicManage.entryList);
 
         Button searchButton = findViewById(R.id.searchButton);
         EditText searchBox = findViewById(R.id.searchText);
@@ -57,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 handleSendImage(intent); // Handle image being sent
             }
         }
+
+        updateView(PicManage.entryList);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -124,6 +125,5 @@ public class MainActivity extends AppCompatActivity {
             String text = "";
             PicManage.addPic(imageURI, text);
         }
-        updateView(PicManage.entryList);
     }
 }
