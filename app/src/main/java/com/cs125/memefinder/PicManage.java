@@ -25,10 +25,12 @@ public class PicManage {
     public static List<PicEntry> entryList = new LinkedList<>();
     public static Context context;
     public static File dirPic;
+    public static final String mainFolderName = "/MemeFinder/";
+    public static final String configFileName = "textfile.json";
 
     public static void init(Context toContext) {
         context = toContext;
-        dirPic = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MemeFinder/");
+        dirPic = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + mainFolderName);
         dirPic.mkdir();
         readFromFile();
         fillURI();
@@ -36,7 +38,7 @@ public class PicManage {
 
     public static void readFromFile() {
         Gson gson = new Gson();
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(new File(dirPic, "textfile.json")))) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(new File(dirPic, configFileName)))) {
             entryList = gson.fromJson(inputStreamReader, new TypeToken<LinkedList<PicEntry>>() {}.getType());
         } catch (Throwable e) {
             e.printStackTrace();
@@ -46,7 +48,7 @@ public class PicManage {
 
     public static void saveToFile() {
         Gson gson = new Gson();
-        try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(new File(dirPic, "textfile.json")))) {
+        try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(new File(dirPic, configFileName)))) {
             gson.toJson(entryList, outputStreamWriter);
         } catch (Throwable e) {
             e.printStackTrace();
