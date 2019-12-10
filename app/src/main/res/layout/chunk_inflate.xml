@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:text="Remove"
             android:textColor="@color/colorAccent"
-            android:textSize="10dp" />
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/saveButton"
