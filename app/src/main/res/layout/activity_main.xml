@@ -19,7 +19,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Search…"
-            android:inputType="textShortMessage" />
+            android:inputType="textShortMessage"
+            android:imeOptions="actionNone"/>
+
 
         <Button
             android:id="@+id/searchButton"
