@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int SELECT_ORIGINAL_PIC = 1;
 
+    public static List<PicEntry> theList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(v -> {
             String toSearch = searchBox.getText().toString();
             if (toSearch.length() == 0) {
-                updateView(PicManage.entryList);
+                theList = PicManage.entryList;
+                updateView(theList);
             } else {
-                List<PicEntry> resultList = PicManage.search(toSearch);
-                updateView(resultList);
+                theList = PicManage.search(toSearch);
+                updateView(theList);
             }
         });
 
@@ -57,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        updateView(PicManage.entryList);
+        theList = PicManage.entryList;
+        updateView(theList);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -74,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            updateView(PicManage.entryList);
+            theList = PicManage.entryList;
+            updateView(theList);
         }
     }
     public void inflate(PicEntry entry) {
@@ -99,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
         removeButton.setOnClickListener(v -> {
             PicManage.removePic(entry);
-            updateView(PicManage.entryList);
+            theList.remove(entry);
+            updateView(theList);
         });
 
         saveButton.setOnClickListener(v -> {
