@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -71,11 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 Uri imageURI = data.getData();
                 String text = "";
                 PicManage.addPic(imageURI, text);
-                /*String filename = counter + ".jpg";
-                FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE);
-                thePic.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                fos.flush();
-                fos.close();*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -139,16 +132,11 @@ public class MainActivity extends AppCompatActivity {
         while (iterator.hasPrevious()) {
             inflate(iterator.previous());
         }
-        /*PicEntry[] entryArray = toUpdate.toArray(new PicEntry[toUpdate.size()]);
-        for (int i = entryArray.length - 1; i > -1; i--) {
-            inflate(entryArray[i]);
-        }*/
     }
 
     public void handleSendImage(Intent intent) {
         Uri imageURI = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (imageURI != null) {
-            // Update UI to reflect image being shared
             String text = "";
             PicManage.addPic(imageURI, text);
         }
