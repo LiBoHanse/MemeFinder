@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -133,13 +134,15 @@ public class MainActivity extends AppCompatActivity {
     }
     public void updateView(List<PicEntry> toUpdate) {
         LinearLayout picLayout = findViewById(R.id.Inflatee);
+        ListIterator<PicEntry> iterator = toUpdate.listIterator(toUpdate.size());
         picLayout.removeAllViews();
-        List<PicEntry> temp = new LinkedList<>();
-        temp.addAll(toUpdate);
-        Collections.reverse(temp);
-        for (PicEntry entry : temp) {
-            inflate(entry);
+        while (iterator.hasPrevious()) {
+            inflate(iterator.previous());
         }
+        /*PicEntry[] entryArray = toUpdate.toArray(new PicEntry[toUpdate.size()]);
+        for (int i = entryArray.length - 1; i > -1; i--) {
+            inflate(entryArray[i]);
+        }*/
     }
 
     public void handleSendImage(Intent intent) {
