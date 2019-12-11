@@ -71,6 +71,9 @@ public class PicManage {
                 File theFile = new File(dirPic, entry.fileName);
                 //entry.fileUri = Uri.fromFile(theFile);
                 entry.fileUri = getImageContentUri(theFile);
+                if (entry.fileUri == null) {
+                    removePic(entry);
+                }
             } catch (Throwable e) {
                 e.printStackTrace();
             }
