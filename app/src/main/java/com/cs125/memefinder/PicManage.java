@@ -10,8 +10,10 @@ import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.List;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
@@ -72,7 +74,12 @@ public class PicManage {
                 //entry.fileUri = Uri.fromFile(theFile);
                 entry.fileUri = getImageContentUri(theFile);
                 if (entry.fileUri == null) {
-                    entryList.remove(entry);
+                    Resources res = context.getResources();
+                    int resId = R.drawable.ic_launcher_foreground;
+                    entry.fileUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                            "://" + res.getResourcePackageName(resId)
+                            + '/' + res.getResourceTypeName(resId)
+                            + '/' + res.getResourceEntryName(resId));
                 }
             } catch (Throwable e) {
                 e.printStackTrace();
