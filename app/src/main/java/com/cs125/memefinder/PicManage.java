@@ -72,7 +72,7 @@ public class PicManage {
                 //entry.fileUri = Uri.fromFile(theFile);
                 entry.fileUri = getImageContentUri(theFile);
                 if (entry.fileUri == null) {
-                    removePic(entry);
+                    entryList.remove(entry);
                 }
             } catch (Throwable e) {
                 e.printStackTrace();
