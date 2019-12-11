@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode==RESULT_OK) {
             try {
                 Uri imageURI = data.getData();
-                String text = "";
+                EditText searchText = findViewById(R.id.searchText);
+                String text = searchText.getText().toString();
                 PicManage.addPic(imageURI, text);
             } catch (Exception e) {
                 e.printStackTrace();
